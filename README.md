@@ -1,4 +1,4 @@
-# ZPGC-Services-Capstone-2-Project
+# ZPGC-Services-Capstone-2-Project | Prototype 1
 
 Prerquisites:
 - Install XAMPP
