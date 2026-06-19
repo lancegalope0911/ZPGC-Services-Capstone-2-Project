@@ -1,0 +1,89 @@
+/*
+ * FILE: landing_page.css
+ * PURPOSE: Public homepage — navbar + centered hero over background image.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* { box-sizing: border-box; text-decoration: none; }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;                 /* LOGIC: Both needed for full-height background */
+    font-size: 12pt;
+}
+
+body {
+    background-image: url("../images/Hero\ Section.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* ── Navbar ── */
+.navbar {
+    background-color: rgba(11, 12, 22, 0.99);  /* SYNTAX: rgba = color with alpha transparency */
+    font-family: "Inter";
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.navdiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;  /* LOGIC: Logo left, Login button right */
+    gap: 16px;
+}
+
+/* ── Buttons ── */
+.btnW {
+    background-color: #f5f5f5;    /* LOGIC: W = white button (Login in navbar) */
+    border: none;
+    border-radius: 4px;
+    margin-right: 30px;
+    padding: 4px 20px;
+}
+
+.btnW a { color: #610107; font-weight: bold; font-size: 14px; }
+
+.btnR {
+    display: block;
+    margin-top: 4px;
+    background-color: #7e030b;    /* LOGIC: R = red button (Signup CTA in hero) */
+    border: none;
+    border-radius: 6px;
+    padding: 8px 24px;
+    font-weight: bold;
+}
+
+.btnR a, .btnR a:visited { text-decoration: none; padding: 4px 20px; font-size: 15px; color: #f5f5f5; }
+
+/* ── Hero section ── */
+.hero {
+    min-height: calc(100vh - 50px);  /* SYNTAX: calc() — full height minus navbar */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;         /* LOGIC: Vertically center headline + CTA */
+    align-items: center;
+    text-align: center;
+}
+
+#header {
+    font-family: "Inter";
+    color: #f5f5f5;
+    text-align: center;
+    margin: 0;
+    font-size: 55px;
+}
+
+#subhead {
+    font-family: "Inter";
+    color: #f5f5f5;
+    text-align: center;
+    max-width: 700px;             /* LOGIC: Limit line length for readability */
+    margin: 0;
+    font-weight: 380;
+    font-size: 18px;
+}

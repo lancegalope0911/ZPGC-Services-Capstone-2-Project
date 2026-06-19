@@ -1,0 +1,159 @@
+/*
+ * FILE: main_interface.css
+ * PURPOSE: Dashboard layout — sidebar + content area.
+ * USED BY: user.php, admin.php, techn.php
+ * LOGIC:   .main-head.active (added by behavior.js) = collapsed 60px state
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* SYNTAX: * universal selector — applies to every element */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Inter"; }
+a { text-decoration: none; }
+
+/* ── Page layout ── */
+/* LOGIC: Flex row places sidebar left, content right */
+.main-wrap {
+    width: 100%;
+    display: flex;
+}
+
+/* LOGIC: Expanded sidebar — 250px wide, full viewport height */
+.main-wrap .main-head {
+    width: 250px;
+    height: 100vh;              /* SYNTAX: vh = viewport height unit */
+    background-color: #ebebeb;
+    overflow: hidden;           /* LOGIC: Clips text when width shrinks */
+    transition: width 0.2s ease-in-out;  /* LOGIC: Smooth collapse animation */
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* LOGIC: Collapsed state — behavior.js adds "active" class */
+.main-wrap .main-head.active {
+    width: 60px;
+}
+
+/* LOGIC: Nested flex columns fill sidebar height */
+.main-wrap .main-head .main-nav { width: 100%; height: 100%; display: flex; flex-direction: column; }
+.main-wrap .main-head .main-nav .navbar { width: 100%; height: 100%; display: flex; flex-direction: column; }
+.main-wrap .main-head .main-nav .navbar .navbar-nav { height: 100%; display: flex; flex-direction: column; }
+
+/* ── Logo area ── */
+.main-wrap .main-head .main-nav .navbar .navbar-nav .logo {
+    padding: 15px 20px;
+    border-bottom: 1px solid #610107;
+    overflow: hidden;
+    white-space: nowrap;        /* LOGIC: Prevent text wrap during collapse */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 60px;
+    transition: padding 0.2s ease;
+}
+
+.logo img {
+    width: 80px;
+    height: auto;
+    display: block;
+    transition: opacity 0.2s ease;
+}
+
+.logo .showcase-toggler {
+    display: none;              /* LOGIC: Hidden until sidebar is collapsed */
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #610107;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+/* LOGIC: Collapsed — center hamburger, hide logo image */
+.main-wrap .main-head.active .logo {
+    justify-content: center;
+    padding: 15px 10px;
+}
+
+.main-wrap .main-head.active .logo img {
+    display: none;
+}
+
+.main-wrap .main-head.active .logo .showcase-toggler {
+    display: flex;
+}
+
+.main-wrap .main-head:hover .logo .showcase-toggler {
+    display: none;              /* LOGIC: Hide button when hover expands sidebar */
+}
+
+/* ── Navigation list ── */
+.main-wrap .main-head .main-nav .navbar .navbar-nav .nav-list {
+    display: flex;
+    flex-direction: column;
+    flex: 1;                    /* LOGIC: Fill remaining sidebar height */
+    margin: 0;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.main-wrap .main-head .main-nav .navbar .navbar-nav .nav-list .nav-list-item {
+    list-style: none;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    white-space: nowrap;
+}
+
+/* SYNTAX: :last-child pseudo-class — targets the final list item (Logout) */
+/* LOGIC: margin-top:auto pushes Logout to the bottom of the flex column */
+.main-wrap .main-head .main-nav .navbar .navbar-nav .nav-list .nav-list-item:last-child {
+    margin-top: auto;
+    margin-bottom: 0;
+}
+
+/* SYNTAX: :hover — applies styles when mouse is over the element */
+.main-wrap .main-head .main-nav .navbar .navbar-nav .nav-list .nav-list-item:hover {
+    background-color: #bd8084;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.main-wrap .main-head .main-nav .navbar .navbar-nav .nav-list .nav-list-item .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 15px 10px;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: #610107;
+    transition: 0.2s ease-in-out;
+}
+
+/* LOGIC: Hide text labels when sidebar is collapsed — icons only */
+.main-wrap .main-head.active .nav-link .link-text {
+    display: none;
+}
+
+.nav-link svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    position: relative;
+    top: 1px;
+}
+
+/* ── Content area ── */
+/* LOGIC: flex:1 grows to fill all space beside the sidebar */
+.main-wrap .showcase {
+    flex: 1;
+}
+
+.showcase .head {
+    padding: 15px;
+}
